@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import joblib
 import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Klasifikasi Student Placement", layout="wide")
@@ -9,16 +10,14 @@ st.set_page_config(page_title="Klasifikasi Student Placement", layout="wide")
 
 @st.cache_resource 
 def load_model():
-    with open('best_xgb_cls_model.pkl', 'rb') as file:
-        model = pickle.load(file)
+    model = joblib.load('best_xgb_cls_model.pkl')
     return model
 
 model = load_model()
 
 @st.cache_resource 
 def load_reg_model():
-    with open('best_xgb_reg_model.pkl', 'rb') as file:
-        reg_model = pickle.load(file)
+    reg_model = joblib.load('best_xgb_reg_model.pkl')
     return reg_model
 
 reg_model = load_reg_model()
